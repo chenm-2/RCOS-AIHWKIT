@@ -1,0 +1,80 @@
+Neural Networks: 
+	-Mission: Learning arbitrary input/Output functions given a specific set 
+	          of training data that has already been cleaned and finished
+
+The Actual Architechture: 
+	-Basic Building Block is the Neuron: This is simply an input/output node.
+		- To be specific, This neuron takes in an input indictated as U
+		  and performs some mathematical operation on U in order to transform
+		  U into the desired output data Y
+		- You can utilize activation functions such as Sigmoidal Functions to
+		  transform U. The way this activation function works is that if U is 
+		  insigificant then the output will be floored to 0 or if it is large 
+		  you can simply take 1. In between this 1 and 0 there is an smooth curve
+		  that signals the activation slope 
+		- Another function to be used is the ReLU activation function in which it 
+		  is an linear activation function where it is floored as zero until a 
+		  certain threshold. Once that threshold has been reached we can then 
+		  apply an linear growth function on the U to match the output Y
+	-By stacking the neurons in parallel or in a series, we can achieve a more complex
+	 function where we can apply multiple activation methods onto an input. Then we can
+	 take the output of that function in order to apply another layer of functionality
+	 to it in order to transform it further
+		-You can add as many of these layers as necessary in order to build 
+		 an network that would become the artificial neural network(ANN) consisting
+		 of layers of functions stacked in parallel 
+		-To move even further, we can stack many of these artificial neural 
+		 networks together in order to form an deep neural networks capable of
+		 processing and generating large parameters from just the training set
+		-NN Types:
+			-RNN
+			-AE
+			-VAE/DAE, SAE, MC , HN, BM
+			-DCNN, DN, GANs, LSM,ELM
+			-DRN, KN
+	-Convolutional Neural Networks:
+		-Mostly for image recognition and computer vision. It contains
+		 convolutional layers that take a mask and slide it across the
+		 image in order to do local computations in patches. 
+		-CNN can pull features and edges from such an array containing
+		 all of the information necessary to geenrate the image. By
+		 stacking the convolutional layers, we can then process the array
+	-Recurrent Neural Networks
+		-Used for Audio and temporal signals, it can parse acoustic signature
+		 of speech in time or other signals. 
+		-Can have feedback loops to generate even more informations by pushing
+		 the output back into the neuron in order to do more calculations 
+			-Simple temporal feedback in order to retain some 
+			 memory of the past iterations thus making it different
+			 from an feed-forward network. 
+			-This feedback loop mechanism is what gives the recurrent neurons
+			 a chance to generate more. 
+			-LSTMs or long-short term memory networks are useful for
+			 audio processing and dynamical systems due to the fact that
+			 it has variance in time and memory 
+	-AutoEncoder(Shallow, Linear):
+		-It receives linear combinations of data and the autoencoder is trying to 
+		 take an high dimensional signal and try to comrpess it down into some 
+		 latent space(Z) where all of the variables that are critical can be saved.
+		 This way the Z information can be relifted back to the high dimensional
+		 image thus x hat becomes appromximately equal to x. 
+		-Compression/Decompression in order to take big data or high dimensional
+		 data to figure out the latent space and the degrees of freedom that
+		 could impact the result. 
+		-This neural network can reconstruct the principal component analysis 
+		 through this architechture which holds the shallow linear auto encoder
+		 network 
+		-Deep Autoencoders: 
+			-Now the encoders can have non-linear activation functions
+			 with even more layers of neurons. This also translates into 
+			 better compression and information extraction of the essential
+			 features of this high dimensional data in this latent space Z
+			-The informational bottleneck this creates actually constructs
+			 a interpretability to the latent space because it reduces
+			 the amount of free variables down to a point where we can 
+			 analyze and understand the fundamentals of of what the variables
+			 mean with respect to the data that it is taking information 
+			 from
+		 
+		
+			
