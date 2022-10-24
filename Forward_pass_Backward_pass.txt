@@ -1,0 +1,88 @@
+Forward Propagation: 
+	-Given an input data array X, we can feed it into the first 
+	 layer of the neural network and compute the activations. 
+	-For example the calculation for a single x element within the
+	 array can be broken down into the formula: X:Z[1] = W[1]X+B[1]
+	 where W1 amd B1 are the parameters that can affect the activtion
+	 in layer1 of the neural networks. 
+	 	-For the activation function a[1] we can find that it becomes
+		 g^(Z[1]) and the g is denoted as the activation function
+			-Once this activation has been calculated, we can move
+			 onto the next layer of neurons within the neural netowrk
+		-For the secon layer, we have Z[2] = W[2]a[1] + B[2]
+		 This is saying that taking the output of the first layer
+		 and apply new weights and parameters onto the input data
+		 we can then calculate an whole new set of neurons with
+		 brand new weights
+			-a[2] = g^(Z[2])
+		-This can be repeated until we run out of neural layers and
+		 activation functions. 
+			
+	-The final layer is calculated as Z[x] = W[x]a[x-1] + b[x] 
+	 which would enter the final activation function to calculate
+	 y hat. This would also serve as the general forward propagation 
+	 formula 
+	
+	-Another way of doing this is through an vectorized method.
+	 Z[1] = W[1]X +B[1] and A[1] = g[1](Z[1]) where X = A[0]
+		-Finally: Y hat = g^(Z[L]) = A[L]
+		-This method can be carried out on the entire training
+		 set at the same time through this vectorized formula 
+	-For L in 1-L, we can then compute the activation for each 
+	 activation 
+
+
+Precursor to Backpropagation: Gradient Descent
+	-Gradient Descent is a common optimization algorithm that is 
+	 used to train machine learning models in Neural Networks by 
+	 training on data that these models can learn over time 
+	-The gradient descent is used to help the model find the
+	 minimum of the cost function
+		-Cost Function is a mathematical way of telling the training
+		 model how far off the predictions are from the actual values
+		 it is trying to achieve.
+		-We would like to minimize the cost function in order to
+		 find the best predictions possible for the given model 
+	-In order to apply gradient descent, on each iteration we can take
+	 small steps in the direction that reduces the cost funciton the most
+	 	-Each of these steps are called the learning rates. 
+
+	There are 3 Major gradient descent algorithms. 
+		-Batch: This sums the entries for each training set and update 
+		 the model only after all of the training dataset has been 
+		 evaluated 
+			-Computationally Efficient but it can end with large
+			 processing time due to the training dataset time block
+			 and the need to store all of the data in memory and then
+			 process it. 
+		-Stochastic gradient Descent: This model evaluates each training
+		 example but one at a time instead of doing the whole batch in one pass
+			-Since this model only require one training example,
+			 it would be relatively easy to store in memory and get 
+			 individual responses much faster 
+		-Mini Batch: This splits the training dataset into small batch 
+		 sizes and performs updates on each of those batches. 
+			-This balances the computational efficency as well as
+			 singular processing time. 
+	One issue with gradient descent is that it will struggle to find
+	the global minimium without a non-convex model. 
+		-For example an saddlepoint can mislead the model into 
+		 thinking that the cost function has been minimized where
+		 in reality it has not reached the bottom of the slope yet.
+ 		-In deeper neural networks, gradient descent can experience
+		 vanishing gradients or exploding graidents. 
+			-vanishing gradients are when the gradients are too small
+			 in the early layers
+			-exploding gradients are when the layers processing
+			 too fast thus leading to unstable modeling. 
+
+
+
+
+
+
+
+	
+	
+	
+	
