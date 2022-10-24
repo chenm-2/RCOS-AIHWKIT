@@ -1,0 +1,52 @@
+Backpropagation:
+	This an algorithm to compute a complicated gradient. 
+
+	-The essence of backpropagation is the practice of fine-tuning
+	the weights of a neural network based on the error rate 
+	or the loss obtained on an previous iteration. 
+		-By decreasing loss and minimizing the cost function 
+		 we can make the model more reliable by increasing
+		 its generalization. 
+	-In order to training a maximally efficent model. We first
+	 have to train the neural network model based on forward 		
+	 propagation in order to set the weights and biases even 
+	 if they are not accurate. 
+		-In order to make a more accurate model we need to
+		 generate the loss and run it through an cost function
+		-The premise of backpropagtion is all about feeding
+		 this loss array backwards in order to fine-tune
+		 each layer and each neutron that would cause the 	 
+		 error in the cost function. 
+		-The Gradient descent function would be utilized 
+		 in a way that would help us find the weights that
+		 would yield the minimized loss on the next iteration
+	
+	The backwards feeding will partake in a parital derivative of
+	the previous functions. 
+	f'(a) = 1
+	J'(w) = Z . delta
+	The Z value is from the activation function calculation
+	in the feed-forward step while delta is the loss unit wihtin
+	the actual layers 
+	
+	The change in delta can be calculated by going through
+	the neurons and penalizing the node that is responsible 	
+	for most of the loss in every layer. By lessening the 	
+	impact that node has on the overall layers we can then 
+	minimized the impact. 
+	
+	To summerize backpropagation:
+		-We find the delta calculation step at every single
+		 unit and then back-propagating the loss into the 	
+		 neural net, and finding out what loss every node/unit
+		 is responsible for. 
+		-Finally we can update the weight accordingly and
+		 run through more iteration of back-propagation
+		 until the model has achieved an minimized loss and
+		 cost function. 
+			-This is done through using gradient descent 
+			 to update all of the weights and utilizing 
+			 out parital derivatives values that we obtain
+			 at every step
+
+	
