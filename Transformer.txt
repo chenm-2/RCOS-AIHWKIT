@@ -1,0 +1,56 @@
+
+Transformers were developed to solve the problem of sequence 
+	transduction, or neural machine translation. That means any 
+	task that transforms an input sequence to an output sequence. 
+	This includes speech recognition, text-to-speech transformation
+
+	-Unlike normal neural networks, Transformers are designed to take a series 
+	of inputs with no predetermined limit on size. The term “series” here 
+	denotes that each input of that sequence has some relationship with its 
+	neighbors or has some influence on them.
+
+	
+	-Long short-term memory is a special kind of RNN, specially made for 
+	solving vanishing gradient problems. They are capable of learning long-term 
+	dependencies. In fact, remembering information for long periods of time is 
+	practically their default behaviour, not something they struggle to learn!
+
+
+
+The actual Transformer: 
+
+	The Transformer Architecture:
+	The original version of the transformer was a composition of an encoder stack and 
+	a decoder stack.
+
+	The Encoder Stack:
+	The encoder stack consists of six identical layers, where the output from
+	one layer becomes the input to the next. Each encoder layer has two 
+	sublayers, including a multihead attention layer and a fully connected 
+	feed-forward neural network. The encoder applies a residual connection 
+	around each sublayer, followed by a normalization function. The residual
+ 	connection adds the input of the sublayer to the output of the same layer,
+	as shown in Figure 3.
+
+		The encoder stack implements the concept of self-attention. 
+		Here, the query, keys, and values belong to the same sequence. 
+		One encoder layer uses the output of the previous layer as an 
+		input to attend to all the positions in a sequence of tokens.  
+
+	The Decoder Stack:
+	Like the encoder stack, the decoder stack is built from six identical 
+	layers; the output from one layer becomes the input to the next. However,
+ 	each decoder layer is built from three sublayers, with residual connections 
+	around them followed by a normalization layer. The first two sublayers are 
+	multihead attention layers, and the third one is a fully connected feed-forward 
+	neural network. 
+
+	The first multihead attention sublayer takes input from the previous decoder 
+	layer and implements self-attention with a masking operation. The purpose of
+ 	the mask is to attend to only the preceding tokens in the input sequence
+ 	instead of all the tokens of the sequence. Hence, in case of word sentences, the decoder’s first sublayer attends to each word’s position, ignoring all the words that come after the input symbol and processing all the words that come before it. This is equivalent to predicting a word by using only the previous words in the sentence. 
+
+	For the second multihead attention sublayer, the keys and values come from 
+	the encoder output and the query is the output from the previous decoder layer.
+ 	Hence, in this decoder layer, every position of the decoder output can attend to 
+	all positions of the input sequence. 
