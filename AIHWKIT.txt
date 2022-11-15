@@ -1,0 +1,25 @@
+AI Hardware Kit basics Documentation 
+Analog devices simulator
+A high-performant (CUDA-capable) C++ simulator that allows for simulating a wide range of analog devices and crossbar configurations by using abstract functional models of material characteristics with adjustable parameters. Feature include:
+* Forward pass output-referred noise and device fluctuations, as well as adjustable ADC and DAC discretization and bounds
+* Stochastic update pulse trains for rows and columns with finite weight update size per pulse coincidence
+* Device-to-device systematic variations, cycle-to-cycle noise and adjustable asymmetry during analog update
+* Adjustable device behavior for exploration of material specifications for training and inference
+
+In-memory computing can also be used in the context of supervised training of neural networks with backpropagation. 
+	This training involves three stages: forward propagation of labelled data through thenetwork,	 backward propagation of the error gradients from output to the input of the network, and weight update based on the computed gradients with respect to the weights of each layer. 
+
+This procedure is repeated over a large dataset of labelled examples for multiple epochs until satisfactory performance is reached by the network. When performing training of a neural network encoded in crossbar arrays, forward propagation is performed in the same way as for the inference described above. The only difference is that all the activations  of each layer have to be stored locally in the periphery.
+
+ Next, backward propagation is performed by inputting the error gradient  from the subsequent layer onto the columns of the current layer and deciphering the result from the rows. The resulting sum  needs to be multiplied by the derivative of the neuron nonlinear function, which is computed externally, to obtain the error gradient of the current layer. Finally, the weight update is implemented based on the outer product of activations and error gradients  of each layer. 
+
+The weight update is performed in-memory by applying suitable electrical pulses to the devices which will increase their conductance in proportion to the desired weight update. See references [1, 3, 4, 5] for details on different techniques that have been proposed to perform weight updates with in-memory computing chips.
+
+
+Key Technologies to use in AIHWKIT: 
+
+Resistive random-access memory (ReRAM) is a non-volatile memory technology with tuneable conductance states that can be used for in-memory computing. The conductance change of a ReRAM device is bidirectional, that is, it is possible to both increase and decrease its conductance incrementally by applying suitable electrical pulses. This capability can be exploited to implement the backpropagation algorithm. The change of conductance in oxide ReRAM is attributed to change in the configuration of the current conducting filament which consists of oxygen vacancies in a metal oxide film.
+
+This preset is based upon the ReRAM device presented in the work of Gong et al.:ref:[6] <references>. This device was fabricated with hafnium oxide as the metal oxide switching layer. The preset captures the experimentally measured response of this device to 1000 positive and 1000 negative pulses (shown in the Figure above), including the pulse-to-pulse fluctuations. The movement of the oxygen vacancies in response to electrical signals has a probabilistic nature and it emerges as inherent randomness in conductance changes. Realistic device-to-device variability is also included in the preset to appropriately simulate the behavior of an array of such devices.
+
+This preset is based upon the capacitor-based cross-point array presented in the work of Li et al. The array was fabricated with trench capacitors in 14nm CMOS technology. The preset captures the experimentally measured response of this device to 400 positive update and 400 negative update pulses (shown in Figure 6), including the pulse-to-pulse fluctuations. The reported asymmetry between positive and negative updates of 10% is included as well as the cell-to-cell asymmetry variations. Capacitor leakage is also simulated by exponentially decreasing the weight values over training mini-batches, and cell-to-cell variations in leakage are included. Realistic pulse-to-pulse and device-to-device variability is also included in the preset to appropriately simulate the effect of non-ideal characteristics such as readout variation and variation of current sources.
