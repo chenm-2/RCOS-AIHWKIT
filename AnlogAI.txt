@@ -1,0 +1,17 @@
+﻿Analog AI: 
+Analog accelerators leverage the massive parallelism of NVM-based crossbar arrays to perform computation at the location of data. This architecture can significantly mitigate the Von-Neumann bottleneck caused by communication between the processor and memory, and is particularly efficient for fully-connected neural network layers
+
+
+Transformers:
+Transformers provide one solution by replacing recurrence with a self-attention mechanism. For any given word w in the sequence, an attention probability between 0 and 1 is computed between w and every other word in the sequence , allowing the model to quantify the relative importance that each word has in predicting w.
+
+
+        Building Upon the Transformer technology: 
+The BERT was developed to generate meaningful encodings of input sequences useful across a broad range of downstream tasks, such as classification, text generation, and machine translation, requiring only a few epochs of subsequent fine-tuning to prepare for the specific task. BERT consists of 12 layers of a large Transformer encoder. In detailing the main building blocks of each encoder layer, dark grey boxes represent trained weight-matrices (fully-connected layers) that can readily be mapped to analog crossbar arrays.
+
+
+
+
+        How training the model affects the data: 
+Training for inference (i.e., hardware-aware training, or HWA) is done in software to make the subsequent hardware inference more robust, even in the presence of PCM non-idealities (Figure 4B). We apply noise during hardware-aware training, specifically during the forward propagation. While this helps the subsequent inference even in the presence of drift, this noise during training does not itself incorporate any explicit drift models. The subsequent backward propagation and weight update components or various scaling factors (described in previous sections) of software training are based on stochastic gradient descent (SGD) and are both carried out at full precision without additional noise.
+-Programming noise represents the error incurred when encoding the weight in the PCM device. Instead of programming the correct target, the final achieved conductance generally shows some error, which is modeled based on the standard deviation of the iteratively programmed conductance values measured from hardware
